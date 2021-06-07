@@ -1,0 +1,1 @@
+export const SET_MEETING_DETAIL = 'SET_MEETING_DETAIL';
