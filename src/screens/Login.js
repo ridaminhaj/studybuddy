@@ -13,6 +13,7 @@ import {Button, TextInput} from 'react-native-paper'
 import Colors from './../constants/Colors'
 import * as Authentication from './../../api/auth'
 import Graphics from './../graphics/Graphics'
+import { Alert } from 'react-native';
 
 export default Login = ({navigation, route}) => {
   const [email, setEmail] = useState("");
@@ -37,6 +38,7 @@ export default Login = ({navigation, route}) => {
      } ,
       (error) => {
         setIsLoginLoading(false);
+        Alert.alert(error.toString())
         return console.error(error);
       }
     );

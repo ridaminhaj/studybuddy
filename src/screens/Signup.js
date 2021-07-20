@@ -13,6 +13,7 @@ import { CommonActions } from "@react-navigation/native";
 import {Button, TextInput} from 'react-native-paper';
 import Colors from './../constants/Colors'
 import Graphics from './../graphics/Graphics'
+import { Alert } from 'react-native';
 export default Signup = ({navigation, route}) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -47,6 +48,7 @@ export default Signup = ({navigation, route}) => {
       (error) => {
         setIsRegisterLoading(false);
         console.error(error);
+        Alert.alert(error.toString());
       }
     );
   }
@@ -106,7 +108,7 @@ export default Signup = ({navigation, route}) => {
         </Button >
           <Text style = {{color:'black'}}> Already a user? {''}
          
-        <Text onPress = {() => navigation.navigate('New')} style={{color: 'red'}} > Log in here!</Text>
+        <Text onPress = {() => navigation.navigate('Login')} style={{color: 'red'}} > Log in here!</Text>
     
         </Text>
       

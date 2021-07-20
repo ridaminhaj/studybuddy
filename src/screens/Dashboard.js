@@ -4,7 +4,7 @@ import {Button} from 'react-native-paper'
 import firebase from './../../api/firebase'
 import moment from "moment";
 import { getGroups } from "../../api/dataService";
-
+import * as Authentication from './../../api/auth';
 
 export default Dashboard = ({navigation, routes, ...props}) => {
 
@@ -18,6 +18,11 @@ export default Dashboard = ({navigation, routes, ...props}) => {
         })
     }, [])
     
+    const remove = (post) => {const uid = Authentication.getCurrentUserId();
+        firebase.firestore().collection('group').doc(post).get().then(query => {query.forEach(document => {
+            document.data().module
+        })})
+    }
 
     const renderPost = post => {
         return (
@@ -31,6 +36,7 @@ export default Dashboard = ({navigation, routes, ...props}) => {
                         </View>
 
                         <Button icon="eye"  mode = 'compact' color="purple" onPress = {() => navigation.navigate("Tab", {post: post})} />
+                      
                     </View>
                    
                 </View>

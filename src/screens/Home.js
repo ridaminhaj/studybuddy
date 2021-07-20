@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   cover: {
-    color: 'white',
+    color: 'blue',
     marginLeft: ex.width * 0.75,
     marginTop: StatusBar.currentHeight? 
     StatusBar.currentHeight *0.1

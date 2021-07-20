@@ -13,6 +13,7 @@ export const signIn = async ({ email, password }, onSuccess, onError) => {
       Alert.alert("Please verify your email");
     }
   } catch (error) {
+    
     return onError(error);
   }
 }
@@ -43,7 +44,9 @@ export const signOut = async (onSuccess, onError) => {
     await auth.signOut();
     return onSuccess();
   } catch (error) {
+    
     return onError(error);
+
   }
 }
 
@@ -58,6 +61,7 @@ export const setOnAuthStateChanged = (onUserAuthenticated, onUserNotFound) => au
   if (user) {
     return onUserAuthenticated(user);
   } else {
+    
     return onUserNotFound(user);
   }
 });

@@ -29,7 +29,9 @@ tabBarOptions={{
 <Tab.Screen name= "Details" component= {Details} initialParams={{post: route?.params?.post}}
           />
 <Tab.Screen name="Chat" component={Chat} initialParams = {{post: route?.params?.post}} />
-<Tab.Screen name="Upload" component={Upload} />
+
+<Tab.Screen name="Upload" component={Upload} initialParams = {{post: route?.params?.post}} />
+
 </Tab.Navigator>
 
 

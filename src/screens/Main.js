@@ -33,12 +33,14 @@ export default Main = ({navigation, route}) => {
                     <Text onPress={() => {navigation.navigate('Login')}} style={{color:'red'}}>  Log in here!</Text>
          
             </Text>
-           <Button onPress = {() => navigation.navigate("Home")} > Test - Skip to Home without login</Button>
+         
         </SafeAreaView>
 
         
   )
   }
+
+ // <Button onPress = {() => navigation.navigate("Home")} > Test - Skip to Home without login</Button>
   
   const styles = StyleSheet.create(
     {container: {

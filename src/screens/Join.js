@@ -1,24 +1,34 @@
 import React , {useEffect, useState}from "react";
-import { View, Text, StyleSheet, Image, FlatList, Alert, SearchBar } from "react-native";
+import { View, Text, StyleSheet, Image, FlatList, Alert, SafeAreaView,StatusBar } from "react-native";
 import {Button} from 'react-native-paper'
 import {  getOtherGroups, joinGroup } from "../../api/dataService";
 import { CommonActions } from "@react-navigation/routers";
-
+import { SearchBar } from "react-native-elements";
 export default Dashboard = ({navigation, routes, ...props}) => {
 const [data,setData] = useState(null)
 const [value, setValue] = useState(null);
     const [groups, setGroups] = React.useState(null);
+    const[search,setSearch] = useState("");
+
+    const updateSearch = (search) => {
+          setSearch(search);
+    }
 
     useEffect(() => {
         getOtherGroups(function(groups){
+            
          Array.isArray(groups) && groups.length > 0 && setGroups(groups);
-        
+      
         })
     }, [])
 
-    
+    const filteredData = search
+    ? groups.filter(x =>
+        x.module.toLowerCase().includes(search.toLowerCase())
+      )
+    : groups;
 
-    const renderPost = post => {
+    const renderPost = (post,search) => {
         return (
             <View style={styles.feedItem}>
                 
@@ -48,21 +58,25 @@ const [value, setValue] = useState(null);
 
  
         return (
-            <View style={styles.container}>
-                <View style={styles.header}>
-                    <Text style={styles.headerTitle}>Join a group </Text>
-                </View>
+            <SafeAreaView style={styles.container}>
+                
 
+                  <SearchBar
+        placeholder="Type Here..."
+        onChangeText={updateSearch}
+        value={search}
+      />
+                
                 <FlatList
                     style={styles.feed}
-                    data={groups}
+                    data={filteredData}
                     renderItem={({ item }) => renderPost(item)}
                     keyExtractor = {item => item.id}
                     showsVerticalScrollIndicator={false}
                   
                 ></FlatList>
                 
-            </View>
+            </SafeAreaView>
         );
     }
 
@@ -70,7 +84,8 @@ const [value, setValue] = useState(null);
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#EBECF4"
+        backgroundColor: "#EBECF4",
+        paddingTop: StatusBar.currentHeight? StatusBar.currentHeight : 0,
     },
     header: {
         paddingTop: 64,

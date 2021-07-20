@@ -60,7 +60,7 @@ const Postcreate = ({navigation, route, ...props}) => {
       text: {
         alignSelf: 'center',
         textAlign: 'center',
-        fontSize: 30
+        fontSize: 18
       }
   })
 

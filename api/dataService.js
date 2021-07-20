@@ -14,14 +14,14 @@ export async function createGroup(data) {
   const id = doc.id;
   const newid = db.collection('group').doc(id);
   const uid = Authentication.getCurrentUserId();
-  await doc.set({
+  doc.set({
     id,
     uid,
     members : '',
     ...data
   })
   await doc.update({members: Firebase.firestore.FieldValue.arrayUnion(uid)})
-  await newid.set({
+   newid.set({
     id,
     uid,
     members : '',
