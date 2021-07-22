@@ -1,4 +1,4 @@
-import firestore from '@react-native-firebase/firestore';
+// import firestore from '@react-native-firebase/firestore';
 import * as Authentication from './auth';
 import firebase from "./firebase";
 import * as Firebase from 'firebase';
